@@ -1,7 +1,9 @@
 package com.example.todoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,5 +24,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+    }
+    public void moActivityThem(View view) {
+        Intent intent = new Intent(MainActivity.this, activity_add_task.class);
+        startActivity(intent);
     }
 }
