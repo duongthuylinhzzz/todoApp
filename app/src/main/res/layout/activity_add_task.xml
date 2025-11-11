@@ -6,8 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:layout_marginHorizontal="24dp"
+    android:layout_marginHorizontal="8dp"
     tools:context=".activity_add_task">
 
     <TextView
@@ -127,4 +126,12 @@
         app:layout_constraintStart_toEndOf="@id/btnHuy"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <include
+        layout="@layout/menu"
+        android:id="@+id/menu_chung"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

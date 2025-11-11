@@ -2,7 +2,9 @@ package com.example.todoapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -36,13 +38,12 @@ public class activity_add_task extends AppCompatActivity {
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-            // --- Chọn NGÀY ---
             DatePickerDialog dateDialog = new DatePickerDialog(
                     this,
                     (view, y, m, d) -> {
                         calendar.set(y, m, d);
 
-                        // --- Chọn GIỜ ---
+
                         int hour = calendar.get(Calendar.HOUR_OF_DAY);
                         int minute = calendar.get(Calendar.MINUTE);
 
@@ -52,10 +53,10 @@ public class activity_add_task extends AppCompatActivity {
                                     calendar.set(Calendar.HOUR_OF_DAY, h);
                                     calendar.set(Calendar.MINUTE, min);
 
-                                    // Hiển thị kết quả dd/MM/yyyy HH:mm
+
                                     edtNgayGio.setText(sdf.format(calendar.getTime()));
                                 },
-                                hour, minute, true // true = định dạng 24h
+                                hour, minute, true
                         );
 
                         timeDialog.show();
@@ -78,5 +79,27 @@ public class activity_add_task extends AppCompatActivity {
                 }
             }
         });
+        EditText edtTenCongViec = findViewById(R.id.edtTenCongViec);
+        EditText edtMoTa = findViewById(R.id.edtMoTa);
+        EditText edtNgayGio = findViewById(R.id.edtNgayGio);
+        EditText edtMucUuTien = findViewById(R.id.edtMucUuTien);
+        EditText edtDanhMuc = findViewById(R.id.edtDanhMuc);
+
+        Button btnLuu = findViewById(R.id.btnLuu);
+        btnLuu.setOnClickListener(v -> {
+
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("ten", edtTenCongViec.getText().toString());
+            resultIntent.putExtra("mota", edtMoTa.getText().toString());
+            resultIntent.putExtra("ngaygio", edtNgayGio.getText().toString());
+            resultIntent.putExtra("uutien", edtMucUuTien.getText().toString());
+            resultIntent.putExtra("danhmuc", edtDanhMuc.getText().toString());
+
+            setResult(RESULT_OK, resultIntent);
+            finish();
+        });
+
+        Button btnHuy = findViewById(R.id.btnHuy);
+        btnHuy.setOnClickListener(v -> finish());
     }
 }
