@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/main"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".Ngay">
+
+    <!-- Nền mờ khi bật sắp xếp -->
+    <View
+        android:id="@+id/viewDim"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Layout sắp xếp -->
+    <LinearLayout
+        android:id="@+id/layoutSort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_sort"
+        android:padding="16dp"
+        android:elevation="12dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:translationY="300dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sắp xếp theo"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:paddingBottom="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgSortOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rbSortName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên"/>
+
+            <RadioButton
+                android:id="@+id/rbSortDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ngày"/>
+
+            <RadioButton
+                android:id="@+id/rbSortPriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mức ưu tiên"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="12dp">
+
+            <Button
+                android:id="@+id/btnCancelSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hủy"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnApplySort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Áp dụng"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ngày"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingVertical="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tvNgayThang"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Thứ, ngày, tháng"
+        android:textSize="16sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <Button
+        android:id="@+id/btnSapXep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="0dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="4dp"
+        android:text="Sắp xếp"
+        app:layout_constraintTop_toTopOf="@id/tvNgayThang"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp" />
+
+
+    <ScrollView
+        android:id="@+id/scrollTask"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:paddingTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tvNgayThang"
+        app:layout_constraintBottom_toTopOf="@id/menu_chung"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/containerTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="32dp">
+
+            <!-- Khi chưa có task -->
+            <LinearLayout
+                android:id="@+id/layoutEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="32dp">
+
+                <TextView
+                    android:id="@+id/tvEmpty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hiện chưa có task nào\nThêm task nhé?"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="#777"/>
+
+                <Button
+                    android:id="@+id/btnThemTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Thêm"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTodayTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Công việc hôm nay"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/layoutTaskList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:paddingBottom="20dp" />
+
+            <View
+                android:id="@+id/dividerCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD"
+                android:layout_marginVertical="8dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCompletedTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đã hoàn thành"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingBottom="4dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/layoutCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/btnAddTask"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="+"
+        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_circle"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/menu_chung"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:elevation="8dp" />
+
+    <include
+        android:id="@+id/menu_chung"
+        layout="@layout/menu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

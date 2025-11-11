@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoApp">
         <activity
+            android:name=".Ngay"
+            android:exported="false" />
+        <activity
             android:name=".activity_add_task"
             android:exported="false" />
         <activity android:name=".MainActivity2"

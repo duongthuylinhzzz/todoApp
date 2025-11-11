@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:padding="8dp">
+
+    <Button
+        android:id="@+id/btnNgay"
+        android:text="Ngày"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginHorizontal="6dp"
+        android:background="@drawable/btn_circle" />
+
+    <Button
+        android:id="@+id/btnThem"
+        android:text="Thêm"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginHorizontal="6dp"
+        android:background="@drawable/btn_circle" />
+
+    <Button
+        android:id="@+id/btnLich"
+        android:text="Lịch"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginHorizontal="6dp"
+        android:background="@drawable/btn_circle" />
+
+    <Button
+        android:id="@+id/btnCaiDat"
+        android:text="Cài đặt"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginHorizontal="6dp"
+        android:background="@drawable/btn_circle" />
+</LinearLayout>

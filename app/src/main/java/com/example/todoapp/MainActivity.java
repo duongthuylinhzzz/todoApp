@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         };
     }
-    public void moActivityThem(View view) {
-        Intent intent = new Intent(MainActivity.this, activity_add_task.class);
+    public void moActivityNgay(View view) {
+        Intent intent = new Intent(MainActivity.this, Ngay.class);
         startActivity(intent);
     }
 
