@@ -2,11 +2,11 @@ package com.example.todoapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,8 +21,9 @@ public class activity_add_task extends AppCompatActivity {
 
     EditText edtNgayGio, edtTenCongViec, edtMoTa, edtMucUuTien, edtDanhMuc;
     ImageButton btnChonNgay;
+    Button btnLuu, btnHuy;
+
     Calendar calendar;
-    Button btnThem, btnHuy;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 
     private TaskDataSource dataSource;
@@ -33,31 +34,35 @@ public class activity_add_task extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_task);
 
+        // mở database
         dataSource = new TaskDataSource(this);
         dataSource.open();
 
+        // ánh xạ view
         edtNgayGio = findViewById(R.id.edtNgayGio);
-        btnChonNgay = findViewById(R.id.btnChonNgay);
-        btnThem = findViewById(R.id.btnLuu);
-        btnHuy = findViewById(R.id.btnHuy);
         edtTenCongViec = findViewById(R.id.edtTenCongViec);
-        edtDanhMuc = findViewById(R.id.edtDanhMuc);
+        edtMoTa = findViewById(R.id.edtMoTa);
         edtMucUuTien = findViewById(R.id.edtMucUuTien);
+        edtDanhMuc = findViewById(R.id.edtDanhMuc);
+
+        btnChonNgay = findViewById(R.id.btnChonNgay);
+        btnLuu = findViewById(R.id.btnLuu);
+        btnHuy = findViewById(R.id.btnHuy);
 
         calendar = Calendar.getInstance();
 
+
+        // ---------------------- CHỌN NGÀY GIỜ ----------------------
         btnChonNgay.setOnClickListener(v -> {
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-            // --- Chọn NGÀY ---
             DatePickerDialog dateDialog = new DatePickerDialog(
                     this,
                     (view, y, m, d) -> {
                         calendar.set(y, m, d);
 
-                        // --- Chọn GIỜ ---
                         int hour = calendar.get(Calendar.HOUR_OF_DAY);
                         int minute = calendar.get(Calendar.MINUTE);
 
@@ -67,10 +72,9 @@ public class activity_add_task extends AppCompatActivity {
                                     calendar.set(Calendar.HOUR_OF_DAY, h);
                                     calendar.set(Calendar.MINUTE, min);
 
-                                    // Hiển thị kết quả dd/MM/yyyy HH:mm
                                     edtNgayGio.setText(sdf.format(calendar.getTime()));
                                 },
-                                hour, minute, true // true = định dạng 24h
+                                hour, minute, true
                         );
 
                         timeDialog.show();
@@ -82,34 +86,50 @@ public class activity_add_task extends AppCompatActivity {
         });
         edtNgayGio.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                String input = edtNgayGio.getText().toString().trim();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
-                sdf.setLenient(false);
-
                 try {
-                    sdf.parse(input);
+                    sdf.setLenient(false);
+                    sdf.parse(edtNgayGio.getText().toString().trim());
                 } catch (Exception e) {
                     edtNgayGio.setError("Sai định dạng! Ví dụ: 28/10/2025 14:30");
                 }
             }
         });
-        btnThem.setOnClickListener(v -> {
-            String date = edtNgayGio.getText().toString();
-            String tittleTask = edtTenCongViec.getText().toString();
-            String priority = edtMucUuTien.getText().toString();
-            String category = edtDanhMuc.getText().toString();
 
-            Task task = new Task(date, tittleTask, priority, category);
-            addTask(task);
-            startActivity(new Intent(activity_add_task.this, MainActivity.class));
+
+        // ---------------------- NÚT LƯU ----------------------
+        btnLuu.setOnClickListener(v -> {
+
+            String date = edtNgayGio.getText().toString().trim();
+            String title = edtTenCongViec.getText().toString().trim();
+            String desc = edtMoTa.getText().toString().trim();
+            String priority = edtMucUuTien.getText().toString().trim();
+            String category = edtDanhMuc.getText().toString().trim();
+
+            // validate
+            if (title.isEmpty()) {
+                edtTenCongViec.setError("Không được để trống");
+                return;
+            }
+            if (date.isEmpty()) {
+                edtNgayGio.setError("Chọn hoặc nhập ngày giờ");
+                return;
+            }
+
+            // tạo đối tượng Task
+            Task task = new Task(date, title, priority, category);
+
+            // lưu DB
+            dataSource.addTask(task);
+
+            Toast.makeText(this, "Đã lưu!", Toast.LENGTH_SHORT).show();
+
+            // quay lại màn hình chính
+            finish();
         });
 
-        btnHuy.setOnClickListener(v -> {
-            startActivity(new Intent(activity_add_task.this, MainActivity.class));
-        });
-    }
-    void addTask(Task task) {
-        dataSource.addTask(task);
+
+        // ---------------------- NÚT HỦY ----------------------
+        btnHuy.setOnClickListener(v -> finish());
     }
 
     @Override

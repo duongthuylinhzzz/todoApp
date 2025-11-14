@@ -4,7 +4,6 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -12,14 +11,9 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.todoapp.model.Task;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -46,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         btnThem = findViewById(R.id.them);
         btnLich = findViewById(R.id.lich);
         btnCaidat = findViewById(R.id.caiDat);
+        btnThem.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, activity_add_task.class);
+            startActivity(intent);
+        });
 
         dataSource = new TaskDataSource(this);
         dataSource.open();
