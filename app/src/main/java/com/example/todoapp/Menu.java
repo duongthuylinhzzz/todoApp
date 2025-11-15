@@ -6,13 +6,12 @@ import android.widget.Button;
 
 public class Menu {
     public static void setupMenu(Activity activity) {
-        Button btnNgay = activity.findViewById(R.id.btnNgay);
-        Button btnThem = activity.findViewById(R.id.btnThem);
-        Button btnLich = activity.findViewById(R.id.btnLich);
-        Button btnCaiDat = activity.findViewById(R.id.btnCaiDat);
+        Button btnNgay = activity.findViewById(R.id.ngay);
+        Button btnThem = activity.findViewById(R.id.them);
+        Button btnTaskCu = activity.findViewById(R.id.lich);
+        Button btnCaiDat = activity.findViewById(R.id.caiDat);
 
-        btnNgay.setOnClickListener(v ->
-                activity.startActivity(new Intent(activity, Ngay.class)));
-
+        btnTaskCu.setOnClickListener(v ->
+                activity.startActivity(new Intent(activity, CompletedTask.class)));
     }
 }

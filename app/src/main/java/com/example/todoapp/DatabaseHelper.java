@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DUE_DATE = "dueDate";
     public static final String COLUMN_PRIORITY = "priority";
     public static final String COLUMN_CATEGORY = "category";
-
+    public static final String COLUMN_IS_DONE = "is_done";
     // Câu lệnh SQL để tạo bảng
     private static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_TASKS + " (" +
@@ -27,9 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_NAME + " TEXT, " +
                     COLUMN_DUE_DATE + " TEXT, " +
                     COLUMN_PRIORITY + " TEXT, " +
-                    COLUMN_CATEGORY + " TEXT " +
-                    ")";
-
+                    COLUMN_CATEGORY + " TEXT, " +
+                    COLUMN_IS_DONE + " INTEGER DEFAULT 0);";
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

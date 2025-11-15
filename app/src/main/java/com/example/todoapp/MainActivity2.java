@@ -33,6 +33,13 @@ public class MainActivity2 extends AppCompatActivity {
         Task task = (Task) intent.getSerializableExtra("task");
         if (task != null) {
             updateUi(task);
+
+            // Ẩn nút Finish nếu task đã hoàn thành
+            if (task.isDone()) {
+                binding.btnFinish.setVisibility(View.GONE);
+            } else {
+                binding.btnFinish.setVisibility(View.VISIBLE);
+            }
         }
         binding.iconBack.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity2.this, MainActivity.class));
@@ -47,7 +54,9 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
         binding.btnFinish.setOnClickListener(v -> {
-
+            if (task != null) {
+                showDialogFinish(task);
+            }
         });
         binding.btnUpdate.setOnClickListener(v -> {
             if (task != null) {
@@ -128,6 +137,42 @@ public class MainActivity2 extends AppCompatActivity {
             dataSource.close();
             finish();
         });
+        dialog.show();
+    }
+    private void showDialogFinish(Task task) {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_finish_task);
+        dialog.setCancelable(true);
+
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        Button btnConfirm = dialog.findViewById(R.id.btnConfirmFinish);
+        Button btnCancel = dialog.findViewById(R.id.btnCancelFinish);
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+        btnConfirm.setOnClickListener(v -> {
+            // 1. Đánh dấu hoàn thành
+            task.setDone(true);
+
+            // 2. Cập nhật DB
+            dataSource.open();
+            dataSource.updateTask(task);
+            dataSource.close();
+
+            // 3. Chuyển sang activity khác
+            Intent intent = new Intent(MainActivity2.this, CompletedTask.class);
+            intent.putExtra("task", task);
+            startActivity(intent);
+
+            dialog.dismiss();
+            finish(); // optional
+        });
+
         dialog.show();
     }
 

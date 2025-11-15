@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -51,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         loadTasksFromDatabase();
 
-        if (taskList.isEmpty()){
+        if (taskList.isEmpty()) {
             tvKhongCoTask.setVisibility(VISIBLE);
-        }else{
+        } else {
             tvKhongCoTask.setVisibility(View.GONE);
         }
         itemClick = task -> {
@@ -62,12 +61,8 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("task", task);
             startActivity(intent);
         };
+        Menu.setupMenu(this);
     }
-    public void moActivityNgay(View view) {
-        Intent intent = new Intent(MainActivity.this, Ngay.class);
-        startActivity(intent);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -82,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadTasksFromDatabase() {
-        taskList = dataSource.getAllTasks();
+        taskList = dataSource.getTasksByDoneStatus(0);
         taskAdapter = new TaskAdapter(this, taskList);
         taskAdapter.setItemClick(itemClick);
         lvTaskCV.setAdapter(taskAdapter);

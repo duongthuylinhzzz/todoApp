@@ -6,51 +6,58 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="8dp"
     tools:context=".activity_add_task">
 
+    <!-- Tiêu đề -->
     <TextView
         android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="Thêm công việc"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"/>
 
+    <!-- Tên công việc -->
     <EditText
         android:id="@+id/edtTenCongViec"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:hint="Tên công việc"
         android:inputType="text"
         android:minHeight="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Mô tả -->
     <EditText
         android:id="@+id/edtMoTa"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:hint="Mô tả"
         android:inputType="textMultiLine"
         android:minLines="2"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintTop_toBottomOf="@id/edtTenCongViec"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Ngày giờ -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutNgayGio"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintTop_toBottomOf="@id/edtMoTa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -59,14 +66,14 @@
             android:id="@+id/edtNgayGio"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="date"
             android:hint="dd/MM/yyyy HH:mm"
+            android:inputType="date"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnChonNgay"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"/>
 
         <ImageButton
             android:id="@+id/btnChonNgay"
@@ -77,9 +84,10 @@
             android:src="@android:drawable/ic_menu_today"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Mức ưu tiên -->
     <EditText
         android:id="@+id/edtMucUuTien"
         android:layout_width="0dp"
@@ -88,10 +96,12 @@
         android:inputType="number"
         android:minHeight="48dp"
         android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintTop_toBottomOf="@id/layoutNgayGio"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Danh mục -->
     <EditText
         android:id="@+id/edtDanhMuc"
         android:layout_width="0dp"
@@ -100,38 +110,43 @@
         android:inputType="text"
         android:minHeight="48dp"
         android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintTop_toBottomOf="@id/edtMucUuTien"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Nút Hủy & Lưu -->
     <Button
         android:id="@+id/btnHuy"
-        android:text="Hủy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
+        android:text="Hủy"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintTop_toBottomOf="@id/edtDanhMuc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnLuu"
-        app:layout_constraintHorizontal_chainStyle="spread" />
+        app:layout_constraintHorizontal_chainStyle="spread"/>
 
     <Button
         android:id="@+id/btnLuu"
-        android:text="Lưu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:text="Lưu"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintTop_toTopOf="@id/btnHuy"
         app:layout_constraintStart_toEndOf="@id/btnHuy"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Menu dưới cùng -->
     <include
+        android:id="@+id/menu_addTask"
         layout="@layout/menu"
-        android:id="@+id/menu_chung"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

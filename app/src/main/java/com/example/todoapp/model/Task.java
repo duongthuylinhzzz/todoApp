@@ -9,6 +9,7 @@ public class Task implements Serializable {
     public String tittleTask;
     public String priority;
     public String category;
+    private boolean isDone;
 
     public Task() {
     }
@@ -26,6 +27,9 @@ public class Task implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public boolean isDone() {
+        return isDone;
     }
 
     public String getDate() {
@@ -55,7 +59,9 @@ public class Task implements Serializable {
     public String getCategory() {
         return category;
     }
-
+    public void setDone(boolean done) {
+        isDone = done;
+    }
     public void setCategory(String category) {
         this.category = category;
     }
