@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.preference.PreferenceCategory android:title="Chung">
+
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="pref_notifications"
+            android:title="Bật thông báo"
+            android:summary="Nhận thông báo nhắc việc" />
+
+        <androidx.preference.Preference
+            android:key="pref_view_statistics"
+            android:title="Xem thống kê"
+            android:summary="Mở màn hình thống kê số liệu công việc" />
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory android:title="Giao diện">
+
+        <androidx.preference.ListPreference
+            android:key="pref_theme"
+            android:title="Chủ đề"
+            android:entries="@array/theme_entries"
+            android:entryValues="@array/theme_values"
+            android:defaultValue="light" />
+    </androidx.preference.PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>
