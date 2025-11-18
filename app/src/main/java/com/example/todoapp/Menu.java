@@ -11,7 +11,16 @@ public class Menu {
         Button btnTaskCu = activity.findViewById(R.id.lich);
         Button btnCaiDat = activity.findViewById(R.id.caiDat);
 
+        // Mở CompletedTask khi bấm "Task cũ"
         btnTaskCu.setOnClickListener(v ->
                 activity.startActivity(new Intent(activity, CompletedTask.class)));
+
+        // Mở SettingsActivity khi bấm "Cài đặt"
+        btnCaiDat.setOnClickListener(v ->
+                activity.startActivity(new Intent(activity, SettingsActivity.class)));
+
+        // Mở Ngay activity khi bấm "Ngày"
+        btnNgay.setOnClickListener(v ->
+                activity.startActivity(new Intent(activity, Ngay.class)));
     }
 }
