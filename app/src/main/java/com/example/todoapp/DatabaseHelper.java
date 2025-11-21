@@ -37,6 +37,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // Thực thi câu lệnh tạo bảng khi cơ sở dữ liệu được tạo lần đầu
         db.execSQL(TABLE_CREATE);
+        db.execSQL("CREATE TABLE categories (" +
+                "iCategoryID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "sCategoryName TEXT NOT NULL UNIQUE)");
     }
 
     @Override

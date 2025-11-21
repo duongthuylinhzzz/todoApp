@@ -10,6 +10,10 @@ public class Menu {
         Button btnThem = activity.findViewById(R.id.them);
         Button btnTaskCu = activity.findViewById(R.id.lich);
         Button btnCaiDat = activity.findViewById(R.id.caiDat);
+        btnThem.setOnClickListener(v -> {
+            Intent intent = new Intent(activity, TrangChu.class);
+            activity.startActivity(intent);
+                });
 
         // Mở CompletedTask khi bấm "Task cũ"
         btnTaskCu.setOnClickListener(v ->
@@ -21,6 +25,6 @@ public class Menu {
 
         // Mở Ngay activity khi bấm "Ngày"
         btnNgay.setOnClickListener(v ->
-                activity.startActivity(new Intent(activity, Ngay.class)));
+                activity.startActivity(new Intent(activity, TrangChu.class)));
     }
 }

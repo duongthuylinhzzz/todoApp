@@ -11,7 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoApp">
-
+        <activity
+            android:name=".CategoryAdd"
+            android:exported="false" />
+        <activity
+            android:name=".TrangChu"
+            android:exported="false" />
         <activity
             android:name=".CompletedTask"
             android:exported="false" />
@@ -23,28 +28,22 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity2"
-            android:exported="false" />
-
-        <!-- ⭐ Thêm 2 màn hình mới dưới đây -->
+            android:exported="false" /> <!-- ⭐ Thêm 2 màn hình mới dưới đây -->
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
-
         <activity
             android:name=".StatisticsActivity"
-            android:exported="false" />
-        <!-- ⭐ Kết thúc phần thêm -->
-
+            android:exported="false" /> <!-- ⭐ Kết thúc phần thêm -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

@@ -34,11 +34,9 @@ public class activity_add_task extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_task);
 
-        // mở database
         dataSource = new TaskDataSource(this);
         dataSource.open();
 
-        // ánh xạ view
         edtNgayGio = findViewById(R.id.edtNgayGio);
         edtTenCongViec = findViewById(R.id.edtTenCongViec);
         edtMoTa = findViewById(R.id.edtMoTa);

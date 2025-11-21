@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         btnNgay = findViewById(R.id.ngay);
         btnThem = findViewById(R.id.them);
         btnLich = findViewById(R.id.lich);
+        tvKhongCoTask = findViewById(R.id.tvKhongCoTask);
         btnCaidat = findViewById(R.id.caiDat);
         btnThem.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, activity_add_task.class);
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadTasksFromDatabase() {
         taskList = dataSource.getTasksByDoneStatus(0);
+        tvKhongCoTask.setVisibility(taskList.isEmpty() ? VISIBLE : View.GONE);
         taskAdapter = new TaskAdapter(this, taskList);
         taskAdapter.setItemClick(itemClick);
         lvTaskCV.setAdapter(taskAdapter);
